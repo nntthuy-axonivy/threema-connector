@@ -55,7 +55,7 @@
       "type" : "SubProcessCall",
       "name" : "singleMessage",
       "config" : {
-        "processCall" : "singleRecipient:call(String,String,String)",
+        "processCall" : "singleRecipient:call(String,String,util.LookupType)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -67,12 +67,12 @@
           "params" : [
             { "name" : "plainMsg", "type" : "String" },
             { "name" : "receiverID", "type" : "String" },
-            { "name" : "lookupType", "type" : "String" }
+            { "name" : "lookupType", "type" : "util.LookupType" }
           ],
           "map" : {
             "param.plainMsg" : "in.plainMessage",
             "param.receiverID" : "in.receiver",
-            "param.lookupType" : "in.type"
+            "param.lookupType" : "util.LookupType.getByString(in.type)"
           }
         }
       },
