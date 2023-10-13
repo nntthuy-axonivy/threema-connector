@@ -30,7 +30,8 @@
           "map" : {
             "result.apiResponse" : "in.apiResponse"
           }
-        }
+        },
+        "tags" : "connector"
       },
       "visual" : {
         "at" : { "x" : 40, "y" : 64 },

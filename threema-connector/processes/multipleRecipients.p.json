@@ -28,7 +28,8 @@
           "map" : {
             "result.apiResponse" : "in.apiResponses"
           }
-        }
+        },
+        "tags" : "connector"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
@@ -42,7 +43,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 840, "y" : 64 }
+        "at" : { "x" : 600, "y" : 64 }
       }
     }, {
       "id" : "f2",
