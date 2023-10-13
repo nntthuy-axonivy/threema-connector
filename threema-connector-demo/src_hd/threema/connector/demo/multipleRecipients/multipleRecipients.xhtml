@@ -7,7 +7,7 @@
     <ui:define name="title">multipleRecipients</ui:define>
     <ui:define name="content">
 
-      <h3>Send Message via Threema</h3>
+      <h3>Send Message to multiple recipients via Threema</h3>
 
       <h:form id="form">
         <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" 
@@ -16,7 +16,7 @@
              
           
           
-          <p:outputLabel for="sendDemoMessageDataPlainMessage" value="Plain Message" />
+          <p:outputLabel for="sendDemoMessageDataPlainMessage" value="Message" />
           <p:inputTextarea id="sendDemoMessageDataPlainMessage" value="#{data.sendDemoMessageData.plainMessage}" rows="6" cols="33" required="true"/>
           
           <p:outputLabel for="sendDemoMessageDataReceiver" value="Receiver (one per line) ThreemaId / Email / Phone (international format without '+')" />

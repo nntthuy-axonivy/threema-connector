@@ -14,9 +14,12 @@
           columnClasses="ui-g-12 ui-md-3 ui-lg-2, ui-g-12 ui-md-9 ui-lg-4, ui-g-12 ui-md-3 ui-lg-2, ui-g-12 ui-md-9 ui-lg-4">
 
                     
-          <p:outputLabel for="sendDemoMessageDataPlainMessage" value="Plain Message" />
+          <p:outputLabel for="sendDemoMessageDataPlainMessage" value="Message" />
           <p:inputTextarea id="sendDemoMessageDataPlainMessage" value="#{data.sendDemoMessageData.plainMessage}" rows="10" cols="50" required="true"></p:inputTextarea>
           
+          <p:outputLabel for="sendDemoMessageDataReceiver" value="Receiver" />
+          <p:inputText id="sendDemoMessageDataReceiver" value="#{data.sendDemoMessageData.receiver}" required="true"></p:inputText>
+
           <p:outputLabel for="typeSelection" value="Receiver Type"/>
           <p:selectOneRadio id="typeSelection" value="#{data.sendDemoMessageData.type}" layout="lineDirection" required="true">
             <f:selectItem itemLabel="E-Mail" itemValue="email"/>
@@ -24,8 +27,6 @@
             <f:selectItem itemLabel="ThreemaID" itemValue="threemaId"/>
           </p:selectOneRadio>
           
-          <p:outputLabel for="sendDemoMessageDataReceiver" value="Receiver" />
-          <p:inputText id="sendDemoMessageDataReceiver" value="#{data.sendDemoMessageData.receiver}" required="true"></p:inputText>
 
         </p:panelGrid>
         <br />

@@ -82,7 +82,8 @@
       "id" : "f6",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 432, "y" : 64 }
+        "at" : { "x" : 432, "y" : 64 },
+        "description" : "send messages to each recipient"
       },
       "connect" : [
         { "id" : "f11", "to" : "f7", "via" : [ { "x" : 528, "y" : 208 } ], "condition" : "in.sendCount < in.receiverData.size()" },
