@@ -57,7 +57,7 @@
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {
           "out" : "in",
-          "out.apiResponse" : "response.getStatus() == 200 ? \"Sent successfully (\" + response.getStatus() + \")\" : \"Error (\" + response.getStatus() + \")\""
+          "out.apiResponse" : "response.getStatus() == 200 ? \"Sent successfully (\" + response.getStatus() + \")\" : \"Error while sending (\" + response.getStatus() + \")\""
         },
         "resultType" : "java.lang.String",
         "bodyInputType" : "FORM",

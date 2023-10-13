@@ -134,7 +134,7 @@
             "name" : "Skip if lookup failed",
             "segment" : 0.5,
             "offset" : { "x" : 217, "y" : 30 }
-          }, "condition" : "in.apiResponse != \"200\"" },
+          }, "condition" : "!in.apiResponse.contains(\"200\")" },
         { "id" : "f11", "to" : "f4" }
       ]
     } ]

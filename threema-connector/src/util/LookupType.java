@@ -16,7 +16,7 @@ public enum LookupType {
     return switch(id) {
       case "phone" -> LookupType.PHONE;
       case "email" -> LookupType.EMAIL;
-      case "threemaId" -> LookupType.THREEMAID;
+      case "threemaid" -> LookupType.THREEMAID;
       default -> LookupType.INVALID;
     };
   }

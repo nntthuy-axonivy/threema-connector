@@ -54,7 +54,7 @@
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {
           "out" : "in",
-          "out.apiResponse" : "response.getStatus().toString()",
+          "out.apiResponse" : "\"ID-Lookup: \" + response.getStatus().toString()",
           "out.threemaId" : "result"
         },
         "templateParams" : {
@@ -82,7 +82,7 @@
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {
           "out" : "in",
-          "out.apiResponse" : "response.getStatus().toString();",
+          "out.apiResponse" : "\"PublicKey-Lookup: \" + response.getStatus().toString()",
           "out.publicKey" : "result"
         },
         "templateParams" : {
@@ -117,7 +117,7 @@
       "connect" : [
         { "id" : "f13", "to" : "f1", "via" : [ { "x" : 512, "y" : 0 }, { "x" : 808, "y" : 0 } ], "label" : {
             "name" : "Skip if lookup failed"
-          }, "condition" : "in.apiResponse != \"200\"" },
+          }, "condition" : "!in.apiResponse.contains(\"200\")" },
         { "id" : "f12", "to" : "f6" }
       ]
     } ]
