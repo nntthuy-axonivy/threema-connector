@@ -30,7 +30,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
+        "at" : { "x" : 96, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png?small"
       },
       "connect" : { "id" : "f2", "to" : "f7" }
     }, {
@@ -64,7 +65,8 @@
         "resultType" : "java.lang.String"
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 64 }
+        "at" : { "x" : 320, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
       "connect" : { "id" : "f8", "to" : "f4" }
     }, {
@@ -91,7 +93,8 @@
         "resultType" : "java.lang.String"
       },
       "visual" : {
-        "at" : { "x" : 648, "y" : 64 }
+        "at" : { "x" : 648, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
       "connect" : { "id" : "f5", "to" : "f1" }
     }, {

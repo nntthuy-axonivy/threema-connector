@@ -29,7 +29,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
+        "at" : { "x" : 96, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png?small"
       },
       "connect" : { "id" : "f4", "to" : "f2" }
     }, {
@@ -66,7 +67,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 64 }
+        "at" : { "x" : 288, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
       "connect" : { "id" : "f3", "to" : "f1" }
     } ]
