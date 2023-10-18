@@ -1,4 +1,4 @@
-package threema.connector.test;
+package threema.connector.test.process;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

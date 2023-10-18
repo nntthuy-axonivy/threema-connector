@@ -1,4 +1,4 @@
-package threema.connector.test;
+package threema.connector.test.process;
 
 import org.junit.jupiter.api.Test;
 
