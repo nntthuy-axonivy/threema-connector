@@ -22,9 +22,9 @@
 
           <p:outputLabel for="typeSelection" value="Receiver Type"/>
           <p:selectOneRadio id="typeSelection" value="#{data.sendDemoMessageData.type}" layout="lineDirection" required="true">
-            <f:selectItem itemLabel="E-Mail" itemValue="email"/>
-            <f:selectItem itemLabel="Phone" itemValue="phone"/>
-            <f:selectItem itemLabel="ThreemaID" itemValue="threemaid"/>
+            <f:selectItem itemLabel="E-Mail" itemValue="email" id="radioEmail"/>
+            <f:selectItem itemLabel="Phone" itemValue="phone" id="radioPhone"/>
+            <f:selectItem itemLabel="ThreemaID" itemValue="threemaid" id="radioThreemaid"/>
           </p:selectOneRadio>
           
 

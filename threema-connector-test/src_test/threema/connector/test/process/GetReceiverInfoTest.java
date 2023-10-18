@@ -1,5 +1,6 @@
 package threema.connector.test.process;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,6 +11,8 @@ import ch.ivyteam.ivy.bpm.engine.client.History;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
+import ch.ivyteam.ivy.environment.AppFixture;
+import ch.ivyteam.threema.mocks.ThreemaServiceMock;
 import threema.connector.receiverData;
 import util.LookupType;
 
@@ -18,6 +21,11 @@ public class GetReceiverInfoTest {
 	
 	private static final BpmProcess RECEIVER_INFO_PROCESS = BpmProcess.name("getReceiverInfo");
 	private static final String ECHO_PUBLIC_KEY = "4a6a1b34dcef15d43cb74de2fd36091be99fbbaf126d099d47d83d919712c72b";
+	
+	@BeforeEach
+	void setup(AppFixture fixture) {
+		fixture.config("RestClients.ThreemaGateway.Url", ThreemaServiceMock.URI);
+	}
 	
 	@Test
 	void getIDByInvalidEmail(BpmClient bpmClient) {
