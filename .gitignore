@@ -19,5 +19,6 @@ src_wsproc/
 
 # local config
 **/resources/
+threema-connector/config/variables.yaml
 
 **/threema-connector-webtest/**
