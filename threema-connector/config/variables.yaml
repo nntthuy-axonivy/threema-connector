@@ -1,0 +1,11 @@
+Variables:
+  connector:
+   
+    # Your Threema.Gateway ID 
+    threemaId: ''
+    
+    # Your Threema.Gateway Secret
+    secret: ''
+    
+    # Your private key associated with your Threema.Gateway ID
+    privateKey: ''
