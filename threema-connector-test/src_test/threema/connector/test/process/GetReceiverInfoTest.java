@@ -92,7 +92,7 @@ public class GetReceiverInfoTest {
 	void getPublicKeyByID(BpmClient bpmClient) {
 		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
 		
-		String threemaId = "ECHOECHO";
+		String threemaId = "validId";
 		receiverData recDatId = new receiverData();
 		recDatId.setIdentifier(threemaId);
 		recDatId.setType(LookupType.THREEMAID);
