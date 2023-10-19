@@ -21,11 +21,31 @@ import util.LookupType;
 public class GetReceiverInfoTest {
 	
 	private static final BpmProcess RECEIVER_INFO_PROCESS = BpmProcess.name("getReceiverInfo");
-	private static final String ECHO_PUBLIC_KEY = "4a6a1b34dcef15d43cb74de2fd36091be99fbbaf126d099d47d83d919712c72b";
+	private static final String VALID_ID = "validId";
 	
 	@BeforeEach
 	void setup(AppFixture fixture) {
 		fixture.config("RestClients.ThreemaGateway.Url", ThreemaServiceMock.URI);
+	}
+	
+	@Test
+	void getIDByValidEmail(BpmClient bpmClient) {
+		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
+		
+		String email = VALID_ID;
+		receiverData recDatMail = new receiverData();
+		recDatMail.setIdentifier(email);
+		recDatMail.setType(LookupType.EMAIL);
+		
+		ExecutionResult resultMail = bpmClient.start().subProcess(callable).execute(recDatMail);
+		receiverData resultDataMail = resultMail.data().last();		
+		History historyMail = resultMail.history();
+
+		assertThat(resultDataMail.getApiResponse()).contains("200");
+		assertThat(historyMail.elementNames()).contains("call(receiverData)");
+		assertThat(historyMail.elementNames()).contains("LookupId");
+		assertThat(historyMail.elementNames()).contains("LookupPubKey");
+		
 	}
 	
 	@Test
@@ -49,7 +69,26 @@ public class GetReceiverInfoTest {
 	}
 	
 	@Test
-	@Disabled
+	void getIDByValidPhone(BpmClient bpmClient) {
+		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
+		
+		String phone = VALID_ID;
+		receiverData recDatMail = new receiverData();
+		recDatMail.setIdentifier(phone);
+		recDatMail.setType(LookupType.PHONE);
+		
+		ExecutionResult resultMail = bpmClient.start().subProcess(callable).execute(recDatMail);
+		receiverData resultDataMail = resultMail.data().last();		
+		History historyMail = resultMail.history();
+
+		assertThat(resultDataMail.getApiResponse()).contains("200");
+		assertThat(historyMail.elementNames()).contains("call(receiverData)");
+		assertThat(historyMail.elementNames()).contains("LookupId");
+		assertThat(historyMail.elementNames()).contains("LookupPubKey");
+		
+	}
+	
+	@Test
 	void getPublicKeyByID(BpmClient bpmClient) {
 		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
 		
@@ -62,13 +101,13 @@ public class GetReceiverInfoTest {
 		receiverData resultDataId = resultId.data().last();
 		History historyId = resultId.history();
 		
-		assertThat(resultDataId.getApiResponse()).isEqualTo("200");
+		assertThat(resultDataId.getApiResponse()).contains("200");
  /**
   * Dear Bug Hunter,
   * This credential is intentionally included for educational purposes only and does not provide access to any production systems.
   * Please do not submit it as part of our bug bounty program.
   */
-		assertThat(resultDataId.getPublicKey()).isEqualTo(ECHO_PUBLIC_KEY);
+		assertThat(resultDataId.getPublicKey()).isEqualTo("validPubkey");
 		assertThat(historyId.elementNames()).contains("call(receiverData)");
 		assertThat(historyId.elementNames()).contains("LookupPubKey");
 		assertThat(historyId.elementNames()).doesNotContain("LookupId");
@@ -76,7 +115,6 @@ public class GetReceiverInfoTest {
 	
 	
 	@Test
-	@Disabled
 	void getPublicKeyByInvalidID(BpmClient bpmClient) {
 		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
 		
@@ -88,8 +126,9 @@ public class GetReceiverInfoTest {
 		ExecutionResult resultId = bpmClient.start().subProcess(callable).execute(recDatId);
 		receiverData resultDataId = resultId.data().last();
 		History historyId = resultId.history();
-			
-		assertThat(resultDataId.getApiResponse()).isEqualTo("404");
+		
+		
+		assertThat(resultDataId.getApiResponse()).contains("404");
 		assertThat(historyId.elementNames()).contains("call(receiverData)");
 		assertThat(historyId.elementNames()).contains("LookupPubKey");
 		assertThat(historyId.elementNames()).doesNotContain("LookupId");
