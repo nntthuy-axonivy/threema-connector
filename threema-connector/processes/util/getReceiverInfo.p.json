@@ -65,7 +65,7 @@
         "resultType" : "java.lang.String"
       },
       "visual" : {
-        "at" : { "x" : 328, "y" : 64 },
+        "at" : { "x" : 336, "y" : 64 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
       "connect" : { "id" : "f8", "to" : "f4" }
