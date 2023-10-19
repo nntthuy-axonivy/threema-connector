@@ -23,9 +23,10 @@ public enum LookupType {
 
   public static LookupType getByPattern(String id) {
     LookupType type = LookupType.INVALID;
+    id = id.replaceAll(" ", "");
     if(id.lastIndexOf('@') < id.lastIndexOf('.')){
        type = LookupType.EMAIL;
-     }else if(id.matches("\\d{11}")) {
+     }else if(id.matches("\\+?\\d{11}")) {
        type = LookupType.PHONE;
      }else {
        type = LookupType.THREEMAID;

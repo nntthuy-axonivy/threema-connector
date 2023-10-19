@@ -21,7 +21,16 @@
             "out.identifier" : "param.receiverID",
             "out.plainMessage" : "param.plainMsg",
             "out.type" : "param.lookupType"
-          }
+          },
+          "code" : [
+            "import util.LookupType;",
+            "",
+            "if(param.lookupType == LookupType.PHONE){",
+            "  out.identifier = param.receiverID.replaceAll(\" \",\"\").replaceAll(\"\\\\+\", \"\");",
+            "}else{",
+            "  out.identifier = param.receiverID;",
+            "}"
+          ]
         },
         "result" : {
           "params" : [

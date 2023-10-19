@@ -34,13 +34,21 @@ public class LookupTypeTest {
   @Test
   void getTypebyPattern() {
     String email = "xyz@xyz.yz";
-    String phone = "00000000000";
+    String phoneSimple = "00000000000";
+    String phoneComplete = "+00000000000";
+    String phoneCompleteSpace = "+00 00 000 00 00";
     String threemaId = "didegiasdfl";
 
     LookupType typeEmail = LookupType.getByPattern(email);
     assertThat(typeEmail).isEqualTo(LookupType.EMAIL);
 
-    LookupType typePhone = LookupType.getByPattern(phone);
+    LookupType typePhone = LookupType.getByPattern(phoneSimple);
+    assertThat(typePhone).isEqualTo(LookupType.PHONE);
+    
+    typePhone = LookupType.getByPattern(phoneComplete);
+    assertThat(typePhone).isEqualTo(LookupType.PHONE);
+    
+    typePhone = LookupType.getByPattern(phoneCompleteSpace);
     assertThat(typePhone).isEqualTo(LookupType.PHONE);
 
     LookupType typeThreemaId = LookupType.getByPattern(threemaId);
