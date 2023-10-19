@@ -46,7 +46,7 @@ public class ThreemaServiceMock {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response getPublicKey(@PathParam("id") String id) {
 		Response resp;
-		String pubKey = "validPubkey";
+		String pubKey = "ffbb40cfced42f75c4d83c7d35300c0698bf3ef1ab49ace323a1bbc38ee23f36";
 		if(id.equals(THREEMA_ID)) {
 			resp = Response.ok().entity(pubKey).build();
 		}else {
