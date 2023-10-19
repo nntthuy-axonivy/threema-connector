@@ -52,6 +52,10 @@
           "secret" : "ivy.var.connector_secret"
         },
         "path" : "send_e2e",
+        "headers" : {
+          "Accept" : "*/*",
+          "X-Requested-By" : "\"ivy\""
+        },
         "clientId" : "af315689-b538-4142-a823-0632d66754d7",
         "clientErrorCode" : "ivy:error:rest:client",
         "method" : "POST",

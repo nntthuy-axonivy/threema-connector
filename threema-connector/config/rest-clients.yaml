@@ -1,6 +1,6 @@
 RestClients:
   ThreemaGateway:
     UUID: af315689-b538-4142-a823-0632d66754d7
-    Url: https://msgapi.threema.ch/
+    Url: https://msgapi.threema.ch
     Features:
     - ch.ivyteam.ivy.rest.client.mapper.JsonFeature

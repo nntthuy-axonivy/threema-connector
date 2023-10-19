@@ -13,7 +13,7 @@ public enum LookupType {
   }
 
   public static LookupType getByString(String id) {
-    return switch(id) {
+    return switch(id.toLowerCase()) {
       case "phone" -> LookupType.PHONE;
       case "email" -> LookupType.EMAIL;
       case "threemaid" -> LookupType.THREEMAID;
