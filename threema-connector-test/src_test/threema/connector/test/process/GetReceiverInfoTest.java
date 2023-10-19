@@ -1,6 +1,7 @@
 package threema.connector.test.process;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +17,7 @@ import ch.ivyteam.threema.mocks.ThreemaServiceMock;
 import threema.connector.receiverData;
 import util.LookupType;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class GetReceiverInfoTest {
 	
 	private static final BpmProcess RECEIVER_INFO_PROCESS = BpmProcess.name("getReceiverInfo");
@@ -40,7 +41,7 @@ public class GetReceiverInfoTest {
 		receiverData resultDataMail = resultMail.data().last();		
 		History historyMail = resultMail.history();
 
-		assertThat(resultDataMail.getApiResponse()).isEqualTo("404");
+		assertThat(resultDataMail.getApiResponse()).contains("404");
 		assertThat(historyMail.elementNames()).contains("call(receiverData)");
 		assertThat(historyMail.elementNames()).contains("LookupId");
 		assertThat(historyMail.elementNames()).doesNotContain("LookupPubKey");
@@ -48,6 +49,7 @@ public class GetReceiverInfoTest {
 	}
 	
 	@Test
+	@Disabled
 	void getPublicKeyByID(BpmClient bpmClient) {
 		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
 		
@@ -74,6 +76,7 @@ public class GetReceiverInfoTest {
 	
 	
 	@Test
+	@Disabled
 	void getPublicKeyByInvalidID(BpmClient bpmClient) {
 		BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
 		

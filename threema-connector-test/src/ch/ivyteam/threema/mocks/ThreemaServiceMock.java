@@ -23,9 +23,10 @@ public class ThreemaServiceMock {
 	public static final String URI = "{"+IvyDefaultJaxRsTemplates.APP_URL+"}/api/"+PATH_SUFFIX;
 	
 	@GET
-	@Path("/lookup/{a:phone|email}")
+	@Path("/lookup/email")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response getThreemaIdByPhone(@QueryParam("id") String id) {
+	public Response getThreemaIdByPhone() {
+		String id = "validId";
 		Response resp;
 		String threemaId = "ECHOECHO";
 		
