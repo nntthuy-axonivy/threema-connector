@@ -1,0 +1,84 @@
+{
+  "format" : "10.0.0",
+  "id" : "18B23815CA49935E",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "threema.connector.demo.ResultPage.ResultPageData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(sendDemoMessageData)",
+      "config" : {
+        "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
+          ],
+          "map" : {
+            "result.sendDemoMessageData" : "in.sendDemoMessageData"
+          }
+        },
+        "input" : {
+          "params" : [
+            { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
+          ],
+          "map" : {
+            "out.sendDemoMessageData" : "param.sendDemoMessageData"
+          }
+        },
+        "guid" : "18B23815CA5CE936"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 312, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "18B23815CA6B079E"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 312, "y" : 160 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "loadData",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import threema.connector.demo.Status;",
+            "",
+            "List<String> recipients = in.sendDemoMessageData.receiver.split(\"\\n\");",
+            "",
+            "for(int i = 0; i < recipients.size(); i++){",
+            "  Status s = new Status();",
+            "  s.recipient = recipients.get(i);",
+            "  s.status = in.sendDemoMessageData.apiResponse.get(i);",
+            "  out.statusData.add(s);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 64 }
+      },
+      "connect" : { "id" : "f7", "to" : "f1" }
+    } ]
+}

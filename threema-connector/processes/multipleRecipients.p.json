@@ -1,0 +1,127 @@
+{
+  "format" : "10.0.0",
+  "id" : "18B22DA4C8AA09A2",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "threema.connector.SendThreemaMessageData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(String,List<String>)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "plainMsg", "type" : "String" },
+            { "name" : "receivers", "type" : "List<String>" }
+          ],
+          "map" : {
+            "out.plainMessage" : "param.plainMsg",
+            "out.receiver" : "param.receivers"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "apiResponse", "type" : "List<String>" }
+          ],
+          "map" : {
+            "result.apiResponse" : "in.apiResponses"
+          }
+        },
+        "tags" : "connector"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "description" : [
+          "Subprocess to handle sending messages to multiple recipients",
+          "Requires a list of recipients and the unencrypted message"
+        ],
+        "icon" : "res:/webContent/icons/threema-icon_black.png?small"
+      },
+      "connect" : { "id" : "f3", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 600, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "createReceiverData",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.sendCount" : "0"
+          },
+          "code" : [
+            "import util.LookupType;",
+            "import threema.connector.ReceiverData;",
+            "",
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "",
+            "for(String rec : in.receiver){",
+            "  ReceiverData recDat = new ReceiverData();",
+            "  recDat.plainMessage = in.plainMessage;",
+            "  recDat.identifier = rec;",
+            "  recDat.type = LookupType.getByPattern(rec);",
+            "  out.receiverData.add(recDat);",
+            "}",
+            "",
+            "for(ReceiverData rec : out.receiverData){",
+            "  Ivy.log().debug(rec.identifier + \" \" + rec.type + \" \" + rec.plainMessage);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
+      },
+      "connect" : { "id" : "f4", "to" : "f6" }
+    }, {
+      "id" : "f6",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 432, "y" : 64 },
+        "description" : "send messages to each recipient"
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f7", "via" : [ { "x" : 528, "y" : 208 } ], "condition" : "in.sendCount < in.receiverData.size()" },
+        { "id" : "f10", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "SubProcessCall",
+      "name" : "singleRecipient",
+      "config" : {
+        "processCall" : "singleRecipient:call(String,String,util.LookupType)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.sendCount" : "in.sendCount + 1"
+          },
+          "code" : "out.apiResponses.add(result.apiResponse);"
+        },
+        "call" : {
+          "params" : [
+            { "name" : "plainMsg", "type" : "String" },
+            { "name" : "receiverID", "type" : "String" },
+            { "name" : "lookupType", "type" : "util.LookupType" }
+          ],
+          "map" : {
+            "param.plainMsg" : "in.plainMessage",
+            "param.receiverID" : "in.receiverData.get(in.sendCount).identifier",
+            "param.lookupType" : "in.receiverData.get(in.sendCount).type"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 208 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
+      },
+      "connect" : { "id" : "f5", "to" : "f6", "via" : [ { "x" : 344, "y" : 208 } ] }
+    } ]
+}

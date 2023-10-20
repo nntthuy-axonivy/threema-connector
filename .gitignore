@@ -16,3 +16,12 @@ lib/mvn-deps/
 logs/
 src_dataClasses/
 src_wsproc/
+
+# local config
+**/resources/
+threema-connector/config/variables.yaml
+threema-connector/config/variables.yaml_template
+threema-connector/config/variables.yaml_complete
+
+# threema SKD
+threema-connector/lib/threema-msgapi-tool.*

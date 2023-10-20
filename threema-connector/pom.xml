@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.axonivy.connector.threema</groupId>
+  <artifactId>threema-connector</artifactId>
+  <version>10.0.0-SNAPSHOT</version>
+  <packaging>iar</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <version>10.0.6</version>
+        <extensions>true</extensions>
+      </plugin>
+       <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+                <execution>
+                    <id>download-threema-msgapi-tool</id>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <target>
+                        	<mkdir dir="${project.basedir}/lib"/>
+                            <get src="https://gateway.threema.ch/sdk/threema-msgapi-sdk-java-2.0.1.zip"
+                                 dest="${project.basedir}/lib/threema-msgapi-tool.zip"/>                            
+                        </target>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>extract-threema-msgapi-tool</id>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <target>
+                            <unzip src="${project.basedir}/lib/threema-msgapi-tool.zip"
+                                   dest="${project.basedir}/lib"
+                                   overwrite="false">
+                                <patternset includes="threema-msgapi-tool.jar"/>
+                            </unzip>
+                        </target>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>
+</project>

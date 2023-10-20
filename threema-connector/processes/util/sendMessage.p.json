@@ -1,0 +1,78 @@
+{
+  "format" : "10.0.0",
+  "id" : "18B22CED0FA1555D",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "threema.connector.ReceiverData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(receiverData)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
+          ],
+          "map" : {
+            "out" : "param.receiverData"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
+          ],
+          "map" : {
+            "result.receiverData" : "in"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png?small"
+      },
+      "connect" : { "id" : "f4", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "RestClientCall",
+      "name" : "sendMessage",
+      "config" : {
+        "bodyForm" : {
+          "from" : "ivy.var.threemaConnector_threemaId",
+          "to" : "in.threemaId",
+          "nonce" : "in.nonce",
+          "box" : "in.encryptedMessage",
+          "secret" : "ivy.var.threemaConnector_secret",
+          "" : ""
+        },
+        "path" : "send_e2e",
+        "headers" : {
+          "Accept" : "*/*",
+          "X-Requested-By" : "\"ivy\""
+        },
+        "clientId" : "af315689-b538-4142-a823-0632d66754d7",
+        "clientErrorCode" : "ivy:error:rest:client",
+        "method" : "POST",
+        "statusErrorCode" : ">> Ignore status",
+        "responseMapping" : {
+          "out" : "in",
+          "out.apiResponse" : "response.getStatus() == 200 ? \"Sent successfully (\" + response.getStatus() + \")\" : \"Error while sending (\" + response.getStatus() + \")\""
+        },
+        "resultType" : "java.lang.String",
+        "bodyInputType" : "FORM",
+        "bodyMediaType" : "application/x-www-form-urlencoded"
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
+      },
+      "connect" : { "id" : "f3", "to" : "f1" }
+    } ]
+}

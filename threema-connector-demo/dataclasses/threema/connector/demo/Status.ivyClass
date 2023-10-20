@@ -1,0 +1,6 @@
+Status #class
+threema.connector.demo #namespace
+recipient String #field
+recipient PERSISTENT #fieldModifier
+status String #field
+status PERSISTENT #fieldModifier

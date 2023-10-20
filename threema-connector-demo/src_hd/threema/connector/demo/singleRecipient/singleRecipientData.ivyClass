@@ -1,0 +1,4 @@
+singleRecipientData #class
+threema.connector.demo.singleRecipient #namespace
+sendDemoMessageData threema.connector.demo.sendDemoMessageData #field
+sendDemoMessageData PERSISTENT #fieldModifier

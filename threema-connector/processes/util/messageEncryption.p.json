@@ -1,0 +1,64 @@
+{
+  "format" : "10.0.0",
+  "id" : "18B22CD369A6089F",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "threema.connector.ReceiverData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "call(receiverData)",
+      "config" : {
+        "callSignature" : "call",
+        "input" : {
+          "params" : [
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
+          ],
+          "map" : {
+            "out" : "param.receiverData"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
+          ],
+          "map" : {
+            "result.receiverData" : "in"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png?small"
+      },
+      "connect" : { "id" : "f4", "to" : "f2" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "Script",
+      "name" : "Encrypt Message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import util.MessageEncryptor;",
+            "import util.MessageEncryptor.EncryptionResult;",
+            "",
+            "EncryptionResult result = MessageEncryptor.encrypt(in.publicKey, in.plainMessage);",
+            "out.encryptedMessage = result.encryptedMessage();",
+            "out.nonce = result.nonce();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 },
+        "icon" : "res:/webContent/icons/threema-icon_black.png"
+      },
+      "connect" : { "id" : "f3", "to" : "f1" }
+    } ]
+}
