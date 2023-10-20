@@ -8,7 +8,7 @@ import ch.threema.apitool.results.EncryptResult;
 
 
 public class MessageEncryptor {
-  public record EncryptionResult(String encryptedMessage, String nonce) {};
+  public record EncryptionResult(String encryptedMessage, String nonce) {}
   public static EncryptionResult encrypt(String publicKey, String msg) {
 
     byte[] encPrivKey = DatatypeConverter.parseHexBinary(Ivy.var().get("threemaConnector.privateKey"));
