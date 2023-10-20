@@ -32,11 +32,13 @@
                         <target>
                             <get src="https://gateway.threema.ch/sdk/threema-msgapi-sdk-java-2.0.1.zip"
                                  dest="${project.basedir}/lib/threema-msgapi-tool.zip"/>
+                                 <!--
                             <unzip src="${project.basedir}/lib/threema-msgapi-tool.zip"
                                    dest="${project.basedir}/lib"
                                    overwrite="false">
                                 <patternset includes="threema-msgapi-tool.jar"/>
                             </unzip>
+                            -->
                         </target>
                     </configuration>
                 </execution>
