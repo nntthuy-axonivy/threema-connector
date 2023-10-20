@@ -24,4 +24,4 @@ threema-connector/config/variables.yaml_template
 threema-connector/config/variables.yaml_complete
 
 # threema SKD
-**/threema-msgapi-tool.*
+threema-connector/lib/threema-msgapi-tool.*
