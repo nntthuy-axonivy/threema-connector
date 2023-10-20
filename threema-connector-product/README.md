@@ -18,15 +18,5 @@ For generating the keys and requesting a new Threema.Gateway ID refer to [Genera
 To use the Threema Connector, add the following variables to your Axon Ivy Project:
 
 ```
-Variables:
-  connector:
-   
-    # Your Threema.Gateway ID 
-    threemaId: ''
-    
-    # Your Threema.Gateway Secret
-    secret: ''
-    
-    # Your private key associated with your Threema.Gateway ID
-    privateKey: ''
+@variables.yaml@
 ```
