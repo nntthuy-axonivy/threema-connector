@@ -3,7 +3,7 @@
   "id" : "18B22CD369A6089F",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "threema.connector.receiverData"
+    "data" : "threema.connector.ReceiverData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -13,7 +13,7 @@
         "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "out" : "param.receiverData"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "result.receiverData" : "in"
@@ -46,23 +46,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.threema.apitool.results.EncryptResult;",
-            "import ch.threema.apitool.CryptTool;",
-            "import javax.xml.bind.DatatypeConverter;",
+            "import util.MessageEncryptor;",
+            "import util.MessageEncryptor.EncryptionResult;",
             "",
-            "String privateKey = ivy.var.connector_privateKey;",
-            "String publicKey = in.publicKey;",
-            "String msg = in.plainMessage;",
-            "",
-            "Array<byte> encPrivKey = DatatypeConverter.parseHexBinary(privateKey);",
-            "Array<byte> encPubKey = DatatypeConverter.parseHexBinary(publicKey);",
-            "",
-            "CryptTool tool = new CryptTool();",
-            "EncryptResult result = tool.encryptTextMessage(msg, encPrivKey, encPubKey);",
-            "",
-            "out = in;",
-            "out.encryptedMessage = DatatypeConverter.printHexBinary(result.getResult());",
-            "out.nonce = DatatypeConverter.printHexBinary(result.getNonce());"
+            "EncryptionResult result = MessageEncryptor.encrypt(in.publicKey, in.plainMessage);",
+            "out.encryptedMessage = result.encryptedMessage();",
+            "out.nonce = result.nonce();"
           ]
         }
       },
