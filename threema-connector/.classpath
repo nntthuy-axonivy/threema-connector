@@ -29,9 +29,7 @@
   </classpathentry>
   <classpathentry kind="con" path="IVY_CONTAINER" />
   <classpathentry kind="con" path="WEBAPP_CONTAINER" />
-  <classpathentry kind="con"
-    path="org.eclipse.jst.j2ee.internal.web.container" />
-  <classpathentry kind="lib"
-    path="lib/threema-msgapi-tool.jar" />
+  <classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container" />
+  <classpathentry kind="lib" path="lib/threema-msgapi-tool.jar" />
   <classpathentry kind="output" path="target/classes" />
 </classpath>
