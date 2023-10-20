@@ -1,5 +1,5 @@
 Variables:
-  connector:
+  threemaConnector:
    
     # Your Threema.Gateway ID 
     threemaId: ''

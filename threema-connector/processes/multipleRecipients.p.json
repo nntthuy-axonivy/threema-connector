@@ -3,7 +3,7 @@
   "id" : "18B22DA4C8AA09A2",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "threema.connector.sendThreemaMessageData"
+    "data" : "threema.connector.SendThreemaMessageData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -58,19 +58,19 @@
           },
           "code" : [
             "import util.LookupType;",
-            "import threema.connector.receiverData;",
+            "import threema.connector.ReceiverData;",
             "",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "",
             "for(String rec : in.receiver){",
-            "  receiverData recDat = new receiverData();",
+            "  ReceiverData recDat = new ReceiverData();",
             "  recDat.plainMessage = in.plainMessage;",
             "  recDat.identifier = rec;",
             "  recDat.type = LookupType.getByPattern(rec);",
             "  out.receiverData.add(recDat);",
             "}",
             "",
-            "for(receiverData rec : out.receiverData){",
+            "for(ReceiverData rec : out.receiverData){",
             "  Ivy.log().debug(rec.identifier + \" \" + rec.type + \" \" + rec.plainMessage);",
             "}"
           ]

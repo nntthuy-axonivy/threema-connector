@@ -3,7 +3,7 @@
   "id" : "18B22C8212D554A9",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "threema.connector.receiverData"
+    "data" : "threema.connector.ReceiverData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -59,7 +59,7 @@
       "type" : "SubProcessCall",
       "name" : "getReceiverInfo",
       "config" : {
-        "processCall" : "util/getReceiverInfo:call(threema.connector.receiverData)",
+        "processCall" : "util/getReceiverInfo:call(threema.connector.ReceiverData)",
         "output" : {
           "map" : {
             "out" : "result.receiverData"
@@ -67,7 +67,7 @@
         },
         "call" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "param.receiverData" : "in"
@@ -85,7 +85,7 @@
       "type" : "SubProcessCall",
       "name" : "messageEncryption",
       "config" : {
-        "processCall" : "util/messageEncryption:call(threema.connector.receiverData)",
+        "processCall" : "util/messageEncryption:call(threema.connector.ReceiverData)",
         "output" : {
           "map" : {
             "out" : "result.receiverData"
@@ -93,7 +93,7 @@
         },
         "call" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "param.receiverData" : "in"
@@ -111,7 +111,7 @@
       "type" : "SubProcessCall",
       "name" : "send",
       "config" : {
-        "processCall" : "util/sendMessage:call(threema.connector.receiverData)",
+        "processCall" : "util/sendMessage:call(threema.connector.ReceiverData)",
         "output" : {
           "map" : {
             "out" : "in",
@@ -120,7 +120,7 @@
         },
         "call" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "param.receiverData" : "in"

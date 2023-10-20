@@ -3,7 +3,7 @@
   "id" : "18B22C967B82A625",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "threema.connector.receiverData"
+    "data" : "threema.connector.ReceiverData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -13,7 +13,7 @@
         "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "out" : "param.receiverData",
@@ -22,7 +22,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "result.receiverData" : "in"
@@ -49,8 +49,8 @@
         "clientId" : "af315689-b538-4142-a823-0632d66754d7",
         "clientErrorCode" : "ivy:error:rest:client",
         "queryParams" : {
-          "secret" : "ivy.var.connector_secret",
-          "from" : "ivy.var.connector_threemaId"
+          "secret" : "ivy.var.threemaConnector_secret",
+          "from" : "ivy.var.threemaConnector_threemaId"
         },
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {
@@ -78,8 +78,8 @@
         "clientId" : "af315689-b538-4142-a823-0632d66754d7",
         "clientErrorCode" : "ivy:error:rest:client",
         "queryParams" : {
-          "from" : "ivy.var.connector_threemaId",
-          "secret" : "ivy.var.connector_secret"
+          "from" : "ivy.var.threemaConnector_threemaId",
+          "secret" : "ivy.var.threemaConnector_secret"
         },
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {

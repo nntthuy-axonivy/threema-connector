@@ -3,7 +3,7 @@
   "id" : "18B22CED0FA1555D",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "threema.connector.receiverData"
+    "data" : "threema.connector.ReceiverData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -13,7 +13,7 @@
         "callSignature" : "call",
         "input" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "out" : "param.receiverData"
@@ -21,7 +21,7 @@
         },
         "result" : {
           "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.receiverData" }
+            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
           ],
           "map" : {
             "result.receiverData" : "in"
@@ -45,11 +45,12 @@
       "name" : "sendMessage",
       "config" : {
         "bodyForm" : {
-          "from" : "ivy.var.connector_threemaId",
+          "from" : "ivy.var.threemaConnector_threemaId",
           "to" : "in.threemaId",
           "nonce" : "in.nonce",
           "box" : "in.encryptedMessage",
-          "secret" : "ivy.var.connector_secret"
+          "secret" : "ivy.var.threemaConnector_secret",
+          "" : ""
         },
         "path" : "send_e2e",
         "headers" : {
