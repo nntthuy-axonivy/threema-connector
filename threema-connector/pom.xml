@@ -52,6 +52,18 @@
                         </target>
                     </configuration>
                 </execution>
+				<execution>
+                	<id>delete-threema-msgapi-tool-archive</id>
+                	<phase>validate</phase>
+                	<goals>
+                   		<goal>run</goal>
+                	</goals>
+	                <configuration>
+	                    <target>
+	                        <delete file="${project.basedir}/lib/threema-msgapi-tool.zip"/>
+	                    </target>
+	                </configuration>
+            	</execution>
             </executions>
         </plugin>
     </plugins>
