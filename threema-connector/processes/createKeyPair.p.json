@@ -1,0 +1,67 @@
+{
+  "format" : "10.0.0",
+  "id" : "18B67537F65B8CEE",
+  "config" : {
+    "data" : "threema.connector.createKeyPairData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "callSignature" : "start",
+        "outLink" : "start.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 696, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "generateKeyPair",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import util.KeyPairGenerator;",
+            "import util.KeyPairGenerator.KeyPair;",
+            "",
+            "KeyPair keys = KeyPairGenerator.generate();",
+            "",
+            "out.publicKey = keys.publicKey();",
+            "out.privateKey = keys.privateKey();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 320, "y" : 64 }
+      },
+      "connect" : { "id" : "f6", "to" : "f5" }
+    }, {
+      "id" : "f5",
+      "type" : "DialogCall",
+      "name" : "KeyPair",
+      "config" : {
+        "dialogId" : "threema.connector.KeyPair",
+        "startMethod" : "start(threema.connector.createKeyPairData)",
+        "call" : {
+          "params" : [
+            { "name" : "createKeyPairData", "type" : "threema.connector.createKeyPairData" }
+          ],
+          "map" : {
+            "param.createKeyPairData" : "in"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 508, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}
