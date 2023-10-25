@@ -10,4 +10,5 @@ Variables:
     secret: ''
     
     # Your private key associated with your Threema.Gateway ID
+    # [password]
     privateKey: ''
