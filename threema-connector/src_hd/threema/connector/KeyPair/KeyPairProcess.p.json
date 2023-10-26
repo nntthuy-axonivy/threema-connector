@@ -1,0 +1,52 @@
+{
+  "format" : "10.0.0",
+  "id" : "18B675A6BCE832D1",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "threema.connector.KeyPair.KeyPairData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(createKeyPairData)",
+      "config" : {
+        "callSignature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "createKeyPairData", "type" : "threema.connector.createKeyPairData" }
+          ],
+          "map" : {
+            "out.createKeyPairData" : "param.createKeyPairData"
+          }
+        },
+        "guid" : "18B675A6BCFECF51"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "18B675A6BD2AE7CB"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : { "id" : "f5", "to" : "f4" }
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    } ]
+}

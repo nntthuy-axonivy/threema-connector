@@ -1,0 +1,6 @@
+createKeyPairData #class
+threema.connector #namespace
+privateKey String #field
+privateKey PERSISTENT #fieldModifier
+publicKey String #field
+publicKey PERSISTENT #fieldModifier
