@@ -11,12 +11,10 @@ Credentials and credits are required to send messages. The credentials can be cr
 ![Result screen](./images/resultScreen.png)
 
 ## Setup
-This Connector requires an "End-to-End Threema ID". [Request new ID](https://gateway.threema.ch/en/id-request)
-<br> 
+1. Create "End-to-End Threema ID" at: [Request new ID](https://gateway.threema.ch/en/id-request)
 To request a new Threema.Gateway ID refer to [Generate keys](https://gateway.threema.ch/en/developer/howto/create-keys/php).
-
-For generating the keys you can use the "createKeyPair" process.
-To use the Threema Connector, add the following variables to your Axon Ivy Project:
+2. Generate a new key pair using the "createKeyPair" process.
+3. Add the following variables to your Axon Ivy Project:
 
 ```
 @variables.yaml@
