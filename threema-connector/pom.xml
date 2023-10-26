@@ -32,38 +32,16 @@
                         <target>
                         	<mkdir dir="${project.basedir}/lib"/>
                             <get src="https://gateway.threema.ch/sdk/threema-msgapi-sdk-java-2.0.1.zip"
-                                 dest="${project.basedir}/lib/threema-msgapi-tool.zip"/>                            
-                        </target>
-                    </configuration>
-                </execution>
-                <execution>
-                    <id>extract-threema-msgapi-tool</id>
-                    <phase>validate</phase>
-                    <goals>
-                        <goal>run</goal>
-                    </goals>
-                    <configuration>
-                        <target>
+                                 dest="${project.basedir}/lib/threema-msgapi-tool.zip"/>
                             <unzip src="${project.basedir}/lib/threema-msgapi-tool.zip"
                                    dest="${project.basedir}/lib"
                                    overwrite="false">
                                 <patternset includes="threema-msgapi-tool.jar"/>
-                            </unzip>
+                            </unzip>     
+                            <delete file="${project.basedir}/lib/threema-msgapi-tool.zip"/>                            
                         </target>
                     </configuration>
                 </execution>
-				<execution>
-                	<id>delete-threema-msgapi-tool-archive</id>
-                	<phase>validate</phase>
-                	<goals>
-                   		<goal>run</goal>
-                	</goals>
-	                <configuration>
-	                    <target>
-	                        <delete file="${project.basedir}/lib/threema-msgapi-tool.zip"/>
-	                    </target>
-	                </configuration>
-            	</execution>
             </executions>
         </plugin>
     </plugins>
