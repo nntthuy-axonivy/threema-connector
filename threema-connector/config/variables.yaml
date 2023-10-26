@@ -2,7 +2,6 @@ Variables:
   threemaConnector:
    
     # Your Threema.Gateway ID 
-    # [password]
     threemaId: ''
     
     # Your Threema.Gateway Secret
@@ -10,4 +9,5 @@ Variables:
     secret: ''
     
     # Your private key associated with your Threema.Gateway ID
+    # [password]
     privateKey: ''
