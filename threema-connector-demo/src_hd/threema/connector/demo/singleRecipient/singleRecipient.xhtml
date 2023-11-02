@@ -4,7 +4,7 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:pe="http://primefaces.org/ui/extensions">  
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
     <ui:define name="title">singleRecipient</ui:define>
@@ -27,12 +27,12 @@
           <p:outputLabel for="sendDemoMessageDataReceiver"
             value="Receiver" />
           <p:inputText id="sendDemoMessageDataReceiver"
-            value="#{data.sendDemoMessageData.receiver}" required="true" placeholder="placeholder"></p:inputText>
+            value="#{data.sendDemoMessageData.receiver}" required="true" placeholder="recipient"></p:inputText>
 
           <p:outputLabel for="typeSelection" value="Receiver Type"/>
           <p:selectOneRadio id="typeSelection"
             value="#{data.sendDemoMessageData.type}"
-            layout="lineDirection" required="true">
+            layout="lineDirection" required="true" onchange="updatePlaceholder(value)">
             <f:selectItem itemLabel="E-Mail" itemValue="email"
               id="radioEmail" />
             <f:selectItem itemLabel="Phone" itemValue="phone"
@@ -40,8 +40,6 @@
             <f:selectItem itemLabel="ThreemaID" itemValue="threemaid"
               id="radioThreemaid" />
           </p:selectOneRadio>
-
-
         </p:panelGrid>
         <br />
         <div class="command-btns">
@@ -51,7 +49,28 @@
             value="Send" update="form" icon="pi pi-send" />
         </div>
       </h:form>
-
+      
+      <script>
+        const updatePlaceholder = (value) => {
+          let newPlaceholder = '';
+          switch(value){
+            case "phone":
+              newPlaceholder = "+41790000000";
+              break;
+            case "email":
+              newPlaceholder = "max.muster@example.com";
+              break;
+            case "threemaid":
+              newPlaceholder = "ECHOECHO";
+              break;    
+            default: 
+              newPlaceholder = "recipient";
+              break;              
+          }
+          document.getElementById('form:sendDemoMessageDataReceiver').placeholder = newPlaceholder;
+        }
+      </script>
+      
     </ui:define>
   </ui:composition>
 </h:body>
