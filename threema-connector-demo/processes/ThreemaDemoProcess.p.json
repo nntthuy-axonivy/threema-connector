@@ -21,7 +21,7 @@
       "id" : "f4",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 768, "y" : 168 }
+        "at" : { "x" : 936, "y" : 168 }
       }
     }, {
       "id" : "f5",
@@ -78,7 +78,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 168 },
+        "at" : { "x" : 512, "y" : 168 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
       "connect" : { "id" : "f18", "to" : "f7" }
@@ -91,10 +91,10 @@
         "startMethod" : "start(threema.connector.demo.sendDemoMessageData)",
         "output" : {
           "map" : {
-            "out" : [
-              "in",
-              "result.sendDemoMessageData"
-            ]
+            "out" : "result.sendDemoMessageData",
+            "out.plainMessage" : "\"\"",
+            "out.receiver" : "\"\"",
+            "out.type" : "\"\""
           }
         },
         "call" : {
@@ -107,9 +107,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 168 }
+        "at" : { "x" : 688, "y" : 168 }
       },
-      "connect" : { "id" : "f16", "to" : "f4" }
+      "connect" : { "id" : "f24", "to" : "f23" }
     }, {
       "id" : "f8",
       "type" : "RequestStart",
@@ -127,7 +127,7 @@
       "id" : "f9",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 768, "y" : 280 }
+        "at" : { "x" : 936, "y" : 280 }
       }
     }, {
       "id" : "f10",
@@ -185,7 +185,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 280 },
+        "at" : { "x" : 512, "y" : 280 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
       "connect" : { "id" : "f17", "to" : "f13" }
@@ -196,6 +196,14 @@
       "config" : {
         "dialogId" : "threema.connector.demo.ResultPage",
         "startMethod" : "start(threema.connector.demo.sendDemoMessageData)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.plainMessage" : "\"\"",
+            "out.receiver" : "\"\"",
+            "out.type" : "\"\""
+          }
+        },
         "call" : {
           "params" : [
             { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
@@ -206,9 +214,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 280 }
+        "at" : { "x" : 688, "y" : 280 }
       },
-      "connect" : { "id" : "f14", "to" : "f9" }
+      "connect" : { "id" : "f27", "to" : "f14" }
     }, {
       "id" : "f0",
       "type" : "RequestStart",
@@ -225,7 +233,7 @@
       "id" : "f1",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 768, "y" : 368 }
+        "at" : { "x" : 936, "y" : 368 }
       }
     }, {
       "id" : "f2",
@@ -267,8 +275,28 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 368 }
+        "at" : { "x" : 520, "y" : 368 }
       },
       "connect" : { "id" : "f21", "to" : "f1" }
+    }, {
+      "id" : "f23",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 840, "y" : 168 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f5", "via" : [ { "x" : 840, "y" : 104 }, { "x" : 272, "y" : 104 } ], "condition" : "in.sendAnother" },
+        { "id" : "f29", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 840, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f31", "to" : "f10", "via" : [ { "x" : 840, "y" : 216 }, { "x" : 272, "y" : 216 } ], "condition" : "in.sendAnother" },
+        { "id" : "f30", "to" : "f9" }
+      ]
     } ]
 }
