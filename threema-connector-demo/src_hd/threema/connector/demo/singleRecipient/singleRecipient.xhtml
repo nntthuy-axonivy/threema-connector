@@ -32,8 +32,7 @@
           <p:outputLabel for="typeSelection" value="Receiver Type"/>
           <p:selectOneRadio id="typeSelection"
             value="#{data.sendDemoMessageData.type}"
-            layout="lineDirection" required="true"
-            onclick="(() => {console.log('hamburger')})()">
+            layout="lineDirection" required="true">
             <f:selectItem itemLabel="E-Mail" itemValue="email"
               id="radioEmail" />
             <f:selectItem itemLabel="Phone" itemValue="phone"
