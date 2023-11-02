@@ -269,8 +269,14 @@
             { "name" : "privatekey", "type" : "String" }
           ],
           "map" : {
-            "param.publicKey" : "in.publicKey",
-            "param.privatekey" : "in.privatekey"
+            "param.publicKey" : [
+              "in.publicKey",
+              "in.publicKey"
+            ],
+            "param.privatekey" : [
+              "in.privatekey",
+              "in.privatekey"
+            ]
           }
         }
       },

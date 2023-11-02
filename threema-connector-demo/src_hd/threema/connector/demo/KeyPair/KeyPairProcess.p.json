@@ -1,6 +1,6 @@
 {
   "format" : "10.0.0",
-  "id" : "18B8EF27D89ED10D",
+  "id" : "18B902D7EEB4DF97",
   "kind" : "HTML_DIALOG",
   "config" : {
     "data" : "threema.connector.demo.KeyPair.KeyPairData"
@@ -21,7 +21,7 @@
             "out.privatekey" : "param.privatekey"
           }
         },
-        "guid" : "18B8EF27D8A1D1A5"
+        "guid" : "18B902D7EEFA5F64"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -38,7 +38,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "18B8EF27D8CA39FE"
+        "guid" : "18B902D7EFFC72C5"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }

@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -19,6 +20,11 @@ import ch.ivyteam.threema.mocks.ThreemaServiceMock;
 
 @IvyWebTest
 public class MessageMultipleRecipientsTest {
+
+  @AfterEach
+  public void cleanFixture(WebAppFixture fixture) {
+    fixture.resetConfig("RestClients.ThreemaGateway.Url");
+  }
 
   @Test
   public void sendMessage(WebAppFixture fixture) {
