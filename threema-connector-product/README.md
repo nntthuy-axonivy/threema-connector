@@ -13,7 +13,7 @@ Credentials and credits are required to send messages. The credentials can be cr
 ## Setup
 1. Generate a new key pair using the "createKeyPair" process.
 2. Create "End-to-End Threema ID" at: [Request new ID](https://gateway.threema.ch/en/id-request) <br> 
-Free credits for testing purposes can be requestet at [support-gateway@threema.ch](mailto:support-gateway@threema.ch) <br>
+Free credits for testing purposes can be requested at [support-gateway@threema.ch](mailto:support-gateway@threema.ch) <br>
 3. Add the following variables to your Axon Ivy Project:
 
 ```
