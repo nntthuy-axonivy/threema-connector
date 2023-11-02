@@ -8,3 +8,7 @@ type String #field
 type PERSISTENT #fieldModifier
 apiResponse List<String> #field
 apiResponse PERSISTENT #fieldModifier
+publicKey String #field
+publicKey PERSISTENT #fieldModifier
+privatekey String #field
+privatekey PERSISTENT #fieldModifier

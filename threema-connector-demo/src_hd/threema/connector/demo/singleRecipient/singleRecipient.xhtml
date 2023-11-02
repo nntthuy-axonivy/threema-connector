@@ -27,12 +27,13 @@
           <p:outputLabel for="sendDemoMessageDataReceiver"
             value="Receiver" />
           <p:inputText id="sendDemoMessageDataReceiver"
-            value="#{data.sendDemoMessageData.receiver}" required="true"></p:inputText>
+            value="#{data.sendDemoMessageData.receiver}" required="true" placeholder="placeholder"></p:inputText>
 
-          <p:outputLabel for="typeSelection" value="Receiver Type" />
+          <p:outputLabel for="typeSelection" value="Receiver Type"/>
           <p:selectOneRadio id="typeSelection"
             value="#{data.sendDemoMessageData.type}"
-            layout="lineDirection" required="true">
+            layout="lineDirection" required="true"
+            onclick="(() => {console.log('hamburger')})()">
             <f:selectItem itemLabel="E-Mail" itemValue="email"
               id="radioEmail" />
             <f:selectItem itemLabel="Phone" itemValue="phone"
@@ -48,7 +49,7 @@
           <p:commandLink id="cancel"
             actionListener="#{ivyWorkflowView.cancel()}" value="Cancel" />
           <p:commandButton id="proceed" actionListener="#{logic.close}"
-            value="Proceed" update="form" icon="pi pi-check" />
+            value="Send" update="form" icon="pi pi-check" />
         </div>
       </h:form>
 
