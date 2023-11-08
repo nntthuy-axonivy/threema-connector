@@ -1,25 +1,27 @@
 {
   "format" : "10.0.0",
-  "id" : "18B675A6BCE832D1",
+  "id" : "18B902D7EEB4DF97",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "threema.connector.KeyPair.KeyPairData"
+    "data" : "threema.connector.demo.KeyPair.KeyPairData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(createKeyPairData)",
+      "name" : "start(String,String)",
       "config" : {
         "callSignature" : "start",
         "input" : {
           "params" : [
-            { "name" : "createKeyPairData", "type" : "threema.connector.createKeyPairData" }
+            { "name" : "publicKey", "type" : "String" },
+            { "name" : "privatekey", "type" : "String" }
           ],
           "map" : {
-            "out.createKeyPairData" : "param.createKeyPairData"
+            "out.publicKey" : "param.publicKey",
+            "out.privatekey" : "param.privatekey"
           }
         },
-        "guid" : "18B675A6BCFECF51"
+        "guid" : "18B902D7EEFA5F64"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -36,7 +38,7 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "18B675A6BD2AE7CB"
+        "guid" : "18B902D7EFFC72C5"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }

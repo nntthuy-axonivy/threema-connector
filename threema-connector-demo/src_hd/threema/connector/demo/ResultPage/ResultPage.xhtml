@@ -40,10 +40,10 @@
 
         <br />
         <div class="command-btns">
-          <p:commandLink id="cancel"
-            actionListener="#{ivyWorkflowView.cancel()}" value="Cancel" />
+          <p:commandButton id="send"
+            actionListener="#{logic.sendAnother}" value="Send another Message" icon="pi pi-send"/>
           <p:commandButton id="proceed" actionListener="#{logic.close}"
-            value="Proceed" update="form" icon="pi pi-check" />
+            value="Close" update="form" icon="pi pi-times" />
         </div>
       </h:form>
 

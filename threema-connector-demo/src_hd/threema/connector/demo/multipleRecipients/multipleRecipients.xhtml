@@ -27,10 +27,10 @@
             cols="33" required="true" />
 
           <p:outputLabel for="sendDemoMessageDataReceiver"
-            value="Receiver (one per line) ThreemaId / Email / Phone (international format without '+')" />
+            value="Receiver (one per line) ThreemaId / Email / Phone (international format)" />
           <p:inputTextarea id="sendDemoMessageDataReceiver"
             value="#{data.sendDemoMessageData.receiver}" rows="10"
-            cols="50" required="true" />
+            cols="50" required="true"/>
 
         </p:panelGrid>
         <br />
@@ -38,7 +38,7 @@
           <p:commandLink id="cancel"
             actionListener="#{ivyWorkflowView.cancel()}" value="Cancel" />
           <p:commandButton id="proceed" actionListener="#{logic.close}"
-            value="Proceed" update="form" icon="pi pi-check" />
+            value="Send" update="form" icon="pi pi-send" />
         </div>
       </h:form>
 

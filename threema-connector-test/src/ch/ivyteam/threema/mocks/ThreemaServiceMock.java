@@ -25,8 +25,7 @@ public class ThreemaServiceMock {
   static final String PATH_SUFFIX = "mock";
   private static final String THREEMA_ID = "validId";
   public static final String URI = "{" + IvyDefaultJaxRsTemplates.APP_URL + "}/api/" + PATH_SUFFIX;
-  // {ivy.app.baseurl}/api/mock
-  // https://msgapi.threema.ch
+
 
   @GET
   @Path("/lookup/{type}/{id}")

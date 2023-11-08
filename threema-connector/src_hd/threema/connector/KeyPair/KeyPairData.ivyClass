@@ -1,4 +1,0 @@
-KeyPairData #class
-threema.connector.KeyPair #namespace
-createKeyPairData threema.connector.createKeyPairData #field
-createKeyPairData PERSISTENT #fieldModifier

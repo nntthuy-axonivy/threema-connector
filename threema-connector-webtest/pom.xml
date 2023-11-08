@@ -13,9 +13,15 @@
       <type>iar</type>
     </dependency>
     <dependency>
+      <groupId>com.axonivy.connector.threema</groupId>
+      <artifactId>threema-connector-test</artifactId>
+      <version>${project.version}</version>
+      <type>iar</type>
+    </dependency>
+    <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
-      <version>10.0.0</version>
+      <version>10.0.14</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -25,7 +31,7 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>10.0.6</version>
+        <version>10.0.14</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

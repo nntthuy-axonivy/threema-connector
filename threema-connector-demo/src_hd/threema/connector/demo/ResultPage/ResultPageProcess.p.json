@@ -44,7 +44,13 @@
       "type" : "HtmlDialogEventStart",
       "name" : "close",
       "config" : {
-        "guid" : "18B23815CA6B079E"
+        "guid" : "18B23815CA6B079E",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.sendDemoMessageData.sendAnother" : "false"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
@@ -80,5 +86,22 @@
         "at" : { "x" : 208, "y" : 64 }
       },
       "connect" : { "id" : "f7", "to" : "f1" }
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "sendAnother",
+      "config" : {
+        "guid" : "18B8F438B7519CB7",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.sendDemoMessageData.sendAnother" : "true"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 224 }
+      },
+      "connect" : { "id" : "f9", "to" : "f4" }
     } ]
 }
