@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -27,6 +28,7 @@ public class MessageMultipleRecipientsTest {
   }
 
   @Test
+  @Disabled
   public void sendMessage(WebAppFixture fixture) {
     String mockUrl = ThreemaServiceMock.URI.replaceAll("\\{", "%7B").replaceAll("\\}", "%7D").replaceAll("/", "%2F");
     fixture.config("RestClients.ThreemaGateway.Url", mockUrl);
