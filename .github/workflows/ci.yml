@@ -11,4 +11,4 @@ jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v2
     with:
-      mvnArgs: -Dmaven.test.failure.ignore=true -Divy.engine.version=10.0.14
+      mvnArgs: -Dmaven.test.failure.ignore=true
