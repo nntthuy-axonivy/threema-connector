@@ -11,7 +11,7 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>10.0.14</version>
+        <version>10.0.16</version>
         <extensions>true</extensions>
       </plugin>
        <plugin>
@@ -28,7 +28,7 @@
                     <configuration>
                         <target>
                         	  <mkdir dir="${project.basedir}/lib" />
-                            <get src="https://gateway.threema.ch/sdk/threema-msgapi-sdk-java-2.0.1.zip" dest="${project.basedir}/lib/threema-msgapi-tool.zip" />
+                            <get src="https://gateway.threema.ch/sdk/threema-msgapi-sdk-java-2.1.0.zip" dest="${project.basedir}/lib/threema-msgapi-tool.zip" />
                             <unzip src="${project.basedir}/lib/threema-msgapi-tool.zip" dest="${project.basedir}/lib" overwrite="false">
                                 <patternset includes="threema-msgapi-tool.jar" />
                             </unzip>     
