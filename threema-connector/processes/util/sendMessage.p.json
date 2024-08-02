@@ -45,11 +45,11 @@
       "name" : "sendMessage",
       "config" : {
         "bodyForm" : {
-          "from" : "ivy.var.threemaConnector_threemaId",
+          "from" : "ivy.var.get(\"threemaConnector.threemaId\")",
           "to" : "in.threemaId",
           "nonce" : "in.nonce",
           "box" : "in.encryptedMessage",
-          "secret" : "ivy.var.threemaConnector_secret",
+          "secret" : "ivy.var.get(\"threemaConnector.secret\")",
           "" : ""
         },
         "path" : "send_e2e",

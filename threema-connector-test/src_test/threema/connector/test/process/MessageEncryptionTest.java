@@ -12,7 +12,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.threema.apitool.CryptTool;
 import threema.connector.ReceiverData;
 
-@IvyProcessTest
+@IvyProcessTest(enableWebServer = true)
 public class MessageEncryptionTest {
 
   private final static BpmProcess ENCRYPTION_PROCESS = BpmProcess.name("messageEncryption");

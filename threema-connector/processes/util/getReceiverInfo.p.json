@@ -49,8 +49,8 @@
         "clientId" : "af315689-b538-4142-a823-0632d66754d7",
         "clientErrorCode" : "ivy:error:rest:client",
         "queryParams" : {
-          "secret" : "ivy.var.threemaConnector_secret",
-          "from" : "ivy.var.threemaConnector_threemaId"
+          "secret" : "ivy.var.get(\"threemaConnector.secret\")",
+          "from" : "ivy.var.get(\"threemaConnector.threemaId\")"
         },
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {
@@ -78,8 +78,8 @@
         "clientId" : "af315689-b538-4142-a823-0632d66754d7",
         "clientErrorCode" : "ivy:error:rest:client",
         "queryParams" : {
-          "from" : "ivy.var.threemaConnector_threemaId",
-          "secret" : "ivy.var.threemaConnector_secret"
+          "from" : "ivy.var.get(\"threemaConnector.threemaId\")",
+          "secret" : "ivy.var.get(\"threemaConnector.secret\")"
         },
         "statusErrorCode" : ">> Ignore status",
         "responseMapping" : {
