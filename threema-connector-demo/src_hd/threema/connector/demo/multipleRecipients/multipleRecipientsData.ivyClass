@@ -1,4 +1,0 @@
-multipleRecipientsData #class
-threema.connector.demo.multipleRecipients #namespace
-sendDemoMessageData threema.connector.demo.sendDemoMessageData #field
-sendDemoMessageData PERSISTENT #fieldModifier

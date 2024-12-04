@@ -1,6 +1,0 @@
-KeyPairData #class
-threema.connector.demo.KeyPair #namespace
-publicKey String #field
-publicKey PERSISTENT #fieldModifier
-privatekey String #field
-privatekey PERSISTENT #fieldModifier

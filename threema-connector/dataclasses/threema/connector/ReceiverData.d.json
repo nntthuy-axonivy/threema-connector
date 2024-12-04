@@ -1,0 +1,43 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ReceiverData",
+  "namespace" : "threema.connector",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "identifier",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "threemaId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "type",
+    "type" : "util.LookupType",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "publicKey",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "nonce",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "encryptedMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "plainMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "messageJson",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "apiResponse",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

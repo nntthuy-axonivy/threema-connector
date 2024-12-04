@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "KeyPairData",
+  "namespace" : "threema.connector.demo.KeyPair",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "publicKey",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "privatekey",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -1,6 +1,0 @@
-ResultPageData #class
-threema.connector.demo.ResultPage #namespace
-sendDemoMessageData threema.connector.demo.sendDemoMessageData #field
-sendDemoMessageData PERSISTENT #fieldModifier
-statusData List<threema.connector.demo.Status> #field
-statusData PERSISTENT #fieldModifier

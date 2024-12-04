@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18B22C8212D554A9",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,12 +10,12 @@
       "type" : "CallSubStart",
       "name" : "call(String,String,LookupType)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "plainMsg", "type" : "String" },
-            { "name" : "receiverID", "type" : "String" },
-            { "name" : "lookupType", "type" : "util.LookupType" }
+            { "name" : "plainMsg", "type" : "String", "desc" : "" },
+            { "name" : "receiverID", "type" : "String", "desc" : "" },
+            { "name" : "lookupType", "type" : "util.LookupType", "desc" : "" }
           ],
           "map" : {
             "out.identifier" : "param.receiverID",
@@ -34,20 +34,24 @@
         },
         "result" : {
           "params" : [
-            { "name" : "apiResponse", "type" : "String" }
+            { "name" : "apiResponse", "type" : "String", "desc" : "" }
           ],
           "map" : {
             "result.apiResponse" : "in.apiResponse"
           }
-        },
-        "tags" : "connector"
+        }
       },
+      "tags" : [
+        "connector"
+      ],
       "visual" : {
         "at" : { "x" : 40, "y" : 64 },
         "description" : "Subprocess to handle sending an encrypted message",
         "icon" : "res:/webContent/icons/threema-icon_black.png?small"
       },
-      "connect" : { "id" : "f2", "to" : "f3" }
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -60,17 +64,14 @@
       "name" : "getReceiverInfo",
       "config" : {
         "processCall" : "util/getReceiverInfo:call(threema.connector.ReceiverData)",
+        "call" : {
+          "map" : {
+            "param.receiverData" : "in"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "result.receiverData"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
-          ],
-          "map" : {
-            "param.receiverData" : "in"
           }
         }
       },
@@ -79,24 +80,23 @@
         "description" : "lookup receiver info (threemaId & public key)",
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f9", "to" : "f5" }
+      "connect" : [
+        { "id" : "f9", "to" : "f5" }
+      ]
     }, {
       "id" : "f4",
       "type" : "SubProcessCall",
       "name" : "messageEncryption",
       "config" : {
         "processCall" : "util/messageEncryption:call(threema.connector.ReceiverData)",
+        "call" : {
+          "map" : {
+            "param.receiverData" : "in"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "result.receiverData"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
-          ],
-          "map" : {
-            "param.receiverData" : "in"
           }
         }
       },
@@ -105,25 +105,24 @@
         "description" : "encrypt the message with receivers public key",
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f7", "to" : "f6" }
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "SubProcessCall",
       "name" : "send",
       "config" : {
         "processCall" : "util/sendMessage:call(threema.connector.ReceiverData)",
+        "call" : {
+          "map" : {
+            "param.receiverData" : "in"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.apiResponse" : "result.receiverData.apiResponse"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "receiverData", "type" : "threema.connector.ReceiverData" }
-          ],
-          "map" : {
-            "param.receiverData" : "in"
           }
         }
       },
@@ -132,19 +131,25 @@
         "description" : "send the encrypted message",
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f8", "to" : "f1" }
+      "connect" : [
+        { "id" : "f8", "to" : "f1" }
+      ]
     }, {
       "id" : "f5",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f12" : "!in.apiResponse.contains(\"200\")"
+        }
+      },
       "visual" : {
         "at" : { "x" : 288, "y" : 64 }
       },
       "connect" : [
         { "id" : "f12", "to" : "f1", "via" : [ { "x" : 288, "y" : 144 }, { "x" : 720, "y" : 144 } ], "label" : {
             "name" : "Skip if lookup failed",
-            "segment" : 0.5,
             "offset" : { "x" : 217, "y" : 30 }
-          }, "condition" : "!in.apiResponse.contains(\"200\")" },
+          } },
         { "id" : "f11", "to" : "f4" }
       ]
     } ]

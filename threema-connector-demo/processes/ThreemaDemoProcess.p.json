@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18B8EEA3B9A84FAE",
   "config" : {
     "data" : "threema.connector.demo.sendDemoMessageData"
@@ -9,14 +9,17 @@
       "type" : "RequestStart",
       "name" : "SendMessageToSingleRecipient.ivp",
       "config" : {
-        "callSignature" : "SendMessageToSingleRecipient",
-        "outLink" : "SendMessageToSingleRecipient.ivp",
-        "tags" : "demo"
+        "signature" : "SendMessageToSingleRecipient"
       },
+      "tags" : [
+        "demo"
+      ],
       "visual" : {
         "at" : { "x" : 96, "y" : 168 }
       },
-      "connect" : { "id" : "f19", "to" : "f5" }
+      "connect" : [
+        { "id" : "f19", "to" : "f5" }
+      ]
     }, {
       "id" : "f4",
       "type" : "TaskEnd",
@@ -28,20 +31,8 @@
       "type" : "DialogCall",
       "name" : "singleRecipient",
       "config" : {
-        "dialogId" : "threema.connector.demo.singleRecipient",
-        "startMethod" : "start(threema.connector.demo.sendDemoMessageData)",
-        "output" : {
-          "map" : {
-            "out" : [
-              "in",
-              "result.sendDemoMessageData"
-            ]
-          }
-        },
+        "dialog" : "threema.connector.demo.singleRecipient:start(threema.connector.demo.sendDemoMessageData)",
         "call" : {
-          "params" : [
-            { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
-          ],
           "map" : {
             "param.sendDemoMessageData" : "in"
           }
@@ -50,45 +41,48 @@
       "visual" : {
         "at" : { "x" : 272, "y" : 168 }
       },
-      "connect" : { "id" : "f11", "to" : "f6" }
+      "connect" : [
+        { "id" : "f11", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "SubProcessCall",
       "name" : "singleMessage",
       "config" : {
         "processCall" : "singleRecipient:call(String,String,util.LookupType)",
+        "call" : {
+          "map" : {
+            "param.plainMsg" : "in.plainMessage",
+            "param.receiverID" : "in.receiver",
+            "param.lookupType" : "util.LookupType.getByString(in.type)"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.plainMessage" : "in.plainMessage"
           },
           "code" : "out.apiResponse.add(result.apiResponse);"
-        },
-        "call" : {
-          "params" : [
-            { "name" : "plainMsg", "type" : "String" },
-            { "name" : "receiverID", "type" : "String" },
-            { "name" : "lookupType", "type" : "util.LookupType" }
-          ],
-          "map" : {
-            "param.plainMsg" : "in.plainMessage",
-            "param.receiverID" : "in.receiver",
-            "param.lookupType" : "util.LookupType.getByString(in.type)"
-          }
         }
       },
       "visual" : {
         "at" : { "x" : 512, "y" : 168 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f18", "to" : "f7" }
+      "connect" : [
+        { "id" : "f18", "to" : "f7" }
+      ]
     }, {
       "id" : "f7",
       "type" : "DialogCall",
       "name" : "ResultPage",
       "config" : {
-        "dialogId" : "threema.connector.demo.ResultPage",
-        "startMethod" : "start(threema.connector.demo.sendDemoMessageData)",
+        "dialog" : "threema.connector.demo.ResultPage:start(threema.connector.demo.sendDemoMessageData)",
+        "call" : {
+          "map" : {
+            "param.sendDemoMessageData" : "in"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "result.sendDemoMessageData",
@@ -96,33 +90,30 @@
             "out.receiver" : "\"\"",
             "out.type" : "\"\""
           }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
-          ],
-          "map" : {
-            "param.sendDemoMessageData" : "in"
-          }
         }
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 168 }
       },
-      "connect" : { "id" : "f24", "to" : "f23" }
+      "connect" : [
+        { "id" : "f24", "to" : "f23" }
+      ]
     }, {
       "id" : "f8",
       "type" : "RequestStart",
       "name" : "SendMessageToMultipleRecipients.ivp",
       "config" : {
-        "callSignature" : "SendMessageToMultipleRecipients",
-        "outLink" : "SendMessageToMultipleRecipients.ivp",
-        "tags" : "demo"
+        "signature" : "SendMessageToMultipleRecipients"
       },
+      "tags" : [
+        "demo"
+      ],
       "visual" : {
         "at" : { "x" : 96, "y" : 280 }
       },
-      "connect" : { "id" : "f20", "to" : "f10" }
+      "connect" : [
+        { "id" : "f20", "to" : "f10" }
+      ]
     }, {
       "id" : "f9",
       "type" : "TaskEnd",
@@ -134,53 +125,30 @@
       "type" : "DialogCall",
       "name" : "multipleRecipients",
       "config" : {
-        "dialogId" : "threema.connector.demo.multipleRecipients",
-        "startMethod" : "start(threema.connector.demo.sendDemoMessageData)",
-        "output" : {
-          "map" : {
-            "out" : [
-              "in",
-              "result.sendDemoMessageData",
-              "result.sendDemoMessageData"
-            ]
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
-          ],
-          "map" : {
-            "param.sendDemoMessageData" : [
-              "in",
-              "in"
-            ]
-          }
-        }
+        "dialog" : "threema.connector.demo.multipleRecipients:start(threema.connector.demo.sendDemoMessageData)"
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 280 }
       },
-      "connect" : { "id" : "f15", "to" : "f12" }
+      "connect" : [
+        { "id" : "f15", "to" : "f12" }
+      ]
     }, {
       "id" : "f12",
       "type" : "SubProcessCall",
       "name" : "handleMessage",
       "config" : {
         "processCall" : "multipleRecipients:call(String,List<String>)",
+        "call" : {
+          "map" : {
+            "param.plainMsg" : "in.plainMessage",
+            "param.receivers" : "in.receiver.split(\"\\n\")"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.apiResponse" : "result.apiResponse"
-          }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "plainMsg", "type" : "String" },
-            { "name" : "receivers", "type" : "List<String>" }
-          ],
-          "map" : {
-            "param.plainMsg" : "in.plainMessage",
-            "param.receivers" : "in.receiver.split(\"\\n\")"
           }
         }
       },
@@ -188,14 +156,20 @@
         "at" : { "x" : 512, "y" : 280 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f17", "to" : "f13" }
+      "connect" : [
+        { "id" : "f17", "to" : "f13" }
+      ]
     }, {
       "id" : "f13",
       "type" : "DialogCall",
       "name" : "ResultPage",
       "config" : {
-        "dialogId" : "threema.connector.demo.ResultPage",
-        "startMethod" : "start(threema.connector.demo.sendDemoMessageData)",
+        "dialog" : "threema.connector.demo.ResultPage:start(threema.connector.demo.sendDemoMessageData)",
+        "call" : {
+          "map" : {
+            "param.sendDemoMessageData" : "in"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
@@ -203,32 +177,27 @@
             "out.receiver" : "\"\"",
             "out.type" : "\"\""
           }
-        },
-        "call" : {
-          "params" : [
-            { "name" : "sendDemoMessageData", "type" : "threema.connector.demo.sendDemoMessageData" }
-          ],
-          "map" : {
-            "param.sendDemoMessageData" : "in"
-          }
         }
       },
       "visual" : {
         "at" : { "x" : 688, "y" : 280 }
       },
-      "connect" : { "id" : "f27", "to" : "f14" }
+      "connect" : [
+        { "id" : "f27", "to" : "f14" }
+      ]
     }, {
       "id" : "f0",
       "type" : "RequestStart",
       "name" : "GenerateKeyPair.ivp",
       "config" : {
-        "callSignature" : "GenerateKeyPair",
-        "outLink" : "GenerateKeyPair.ivp"
+        "signature" : "GenerateKeyPair"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 368 }
       },
-      "connect" : { "id" : "f22", "to" : "f2" }
+      "connect" : [
+        { "id" : "f22", "to" : "f2" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -255,53 +224,50 @@
       "visual" : {
         "at" : { "x" : 272, "y" : 368 }
       },
-      "connect" : { "id" : "f26", "to" : "f25" }
+      "connect" : [
+        { "id" : "f26", "to" : "f25" }
+      ]
     }, {
       "id" : "f25",
       "type" : "DialogCall",
       "name" : "KeyPair",
       "config" : {
-        "dialogId" : "threema.connector.demo.KeyPair",
-        "startMethod" : "start(String,String)",
-        "call" : {
-          "params" : [
-            { "name" : "publicKey", "type" : "String" },
-            { "name" : "privatekey", "type" : "String" }
-          ],
-          "map" : {
-            "param.publicKey" : [
-              "in.publicKey",
-              "in.publicKey"
-            ],
-            "param.privatekey" : [
-              "in.privatekey",
-              "in.privatekey"
-            ]
-          }
-        }
+        "dialog" : "threema.connector.demo.KeyPair:start(String,String)"
       },
       "visual" : {
         "at" : { "x" : 520, "y" : 368 }
       },
-      "connect" : { "id" : "f21", "to" : "f1" }
+      "connect" : [
+        { "id" : "f21", "to" : "f1" }
+      ]
     }, {
       "id" : "f23",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f16" : "in.sendAnother"
+        }
+      },
       "visual" : {
         "at" : { "x" : 840, "y" : 168 }
       },
       "connect" : [
-        { "id" : "f16", "to" : "f5", "via" : [ { "x" : 840, "y" : 104 }, { "x" : 272, "y" : 104 } ], "condition" : "in.sendAnother" },
+        { "id" : "f16", "to" : "f5", "via" : [ { "x" : 840, "y" : 104 }, { "x" : 272, "y" : 104 } ] },
         { "id" : "f29", "to" : "f4" }
       ]
     }, {
       "id" : "f14",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f31" : "in.sendAnother"
+        }
+      },
       "visual" : {
         "at" : { "x" : 840, "y" : 280 }
       },
       "connect" : [
-        { "id" : "f31", "to" : "f10", "via" : [ { "x" : 840, "y" : 216 }, { "x" : 272, "y" : 216 } ], "condition" : "in.sendAnother" },
+        { "id" : "f31", "to" : "f10", "via" : [ { "x" : 840, "y" : 216 }, { "x" : 272, "y" : 216 } ] },
         { "id" : "f30", "to" : "f9" }
       ]
     } ]

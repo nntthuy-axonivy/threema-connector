@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18B22DA4C8AA09A2",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -10,11 +10,11 @@
       "type" : "CallSubStart",
       "name" : "call(String,List<String>)",
       "config" : {
-        "callSignature" : "call",
+        "signature" : "call",
         "input" : {
           "params" : [
-            { "name" : "plainMsg", "type" : "String" },
-            { "name" : "receivers", "type" : "List<String>" }
+            { "name" : "plainMsg", "type" : "String", "desc" : "" },
+            { "name" : "receivers", "type" : "List<String>", "desc" : "" }
           ],
           "map" : {
             "out.plainMessage" : "param.plainMsg",
@@ -23,14 +23,16 @@
         },
         "result" : {
           "params" : [
-            { "name" : "apiResponse", "type" : "List<String>" }
+            { "name" : "apiResponse", "type" : "List<String>", "desc" : "" }
           ],
           "map" : {
             "result.apiResponse" : "in.apiResponses"
           }
-        },
-        "tags" : "connector"
+        }
       },
+      "tags" : [
+        "connector"
+      ],
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
         "description" : [
@@ -39,7 +41,9 @@
         ],
         "icon" : "res:/webContent/icons/threema-icon_black.png?small"
       },
-      "connect" : { "id" : "f3", "to" : "f2" }
+      "connect" : [
+        { "id" : "f3", "to" : "f2" }
+      ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
@@ -80,16 +84,23 @@
         "at" : { "x" : 288, "y" : 64 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f4", "to" : "f6" }
+      "connect" : [
+        { "id" : "f4", "to" : "f6" }
+      ]
     }, {
       "id" : "f6",
       "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f11" : "in.sendCount < in.receiverData.size()"
+        }
+      },
       "visual" : {
         "at" : { "x" : 432, "y" : 64 },
         "description" : "send messages to each recipient"
       },
       "connect" : [
-        { "id" : "f11", "to" : "f7", "via" : [ { "x" : 528, "y" : 208 } ], "condition" : "in.sendCount < in.receiverData.size()" },
+        { "id" : "f11", "to" : "f7", "via" : [ { "x" : 528, "y" : 208 } ] },
         { "id" : "f10", "to" : "f1" }
       ]
     }, {
@@ -98,30 +109,27 @@
       "name" : "singleRecipient",
       "config" : {
         "processCall" : "singleRecipient:call(String,String,util.LookupType)",
+        "call" : {
+          "map" : {
+            "param.plainMsg" : "in.plainMessage",
+            "param.receiverID" : "in.receiverData.get(in.sendCount).identifier",
+            "param.lookupType" : "in.receiverData.get(in.sendCount).type"
+          }
+        },
         "output" : {
           "map" : {
             "out" : "in",
             "out.sendCount" : "in.sendCount + 1"
           },
           "code" : "out.apiResponses.add(result.apiResponse);"
-        },
-        "call" : {
-          "params" : [
-            { "name" : "plainMsg", "type" : "String" },
-            { "name" : "receiverID", "type" : "String" },
-            { "name" : "lookupType", "type" : "util.LookupType" }
-          ],
-          "map" : {
-            "param.plainMsg" : "in.plainMessage",
-            "param.receiverID" : "in.receiverData.get(in.sendCount).identifier",
-            "param.lookupType" : "in.receiverData.get(in.sendCount).type"
-          }
         }
       },
       "visual" : {
         "at" : { "x" : 432, "y" : 208 },
         "icon" : "res:/webContent/icons/threema-icon_black.png"
       },
-      "connect" : { "id" : "f5", "to" : "f6", "via" : [ { "x" : 344, "y" : 208 } ] }
+      "connect" : [
+        { "id" : "f5", "to" : "f6", "via" : [ { "x" : 344, "y" : 208 } ] }
+      ]
     } ]
 }

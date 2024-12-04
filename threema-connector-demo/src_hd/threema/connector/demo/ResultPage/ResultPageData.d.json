@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ResultPageData",
+  "namespace" : "threema.connector.demo.ResultPage",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "sendDemoMessageData",
+    "type" : "threema.connector.demo.sendDemoMessageData",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "statusData",
+    "type" : "List<threema.connector.demo.Status>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
