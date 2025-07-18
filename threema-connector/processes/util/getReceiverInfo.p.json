@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "18B22C967B82A625",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -128,7 +128,7 @@
         { "id" : "f10", "to" : "f6", "via" : [ { "x" : 176, "y" : 136 }, { "x" : 648, "y" : 136 } ], "label" : {
             "name" : "Skip if ThreemaID is known",
             "segment" : 2.14,
-            "offset" : { "x" : -224, "y" : 7 }
+            "offset" : { "x" : -215, "y" : 11 }
           } },
         { "id" : "f9", "to" : "f3" }
       ]
