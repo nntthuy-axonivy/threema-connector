@@ -80,6 +80,7 @@
               <threemaId>${threema.threemaId}</threemaId>
               <secret>${threema.secret}</secret>
               <privateKey>${threema.privateKey}</privateKey>
+              <testEnvironment>${testEnvironment}</testEnvironment>
             </systemPropertyVariables>
             <statelessTestsetReporter
               implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">

@@ -17,7 +17,12 @@ public class MultiEnvironmentContextProvider implements TestTemplateInvocationCo
 
   @Override
   public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
-    return Stream.of(new TestEnironmentInvocationContext(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME),
-        new TestEnironmentInvocationContext(ThreemaTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME));
+    String testEnv = System.getProperty(ThreemaTestConstants.END_TO_END_TESTING_ENVIRONMENT_KEY);
+    return switch (testEnv) {
+    case ThreemaTestConstants.END_TO_END_TESTING_ENVIRONMENT_VALUE ->
+      Stream.of(new TestEnvironmentInvocationContext(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME));
+    default ->
+      Stream.of(new TestEnvironmentInvocationContext(ThreemaTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME));
+    };
   }
 }
