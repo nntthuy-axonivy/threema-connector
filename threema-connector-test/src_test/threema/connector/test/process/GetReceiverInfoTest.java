@@ -1,10 +1,11 @@
 package threema.connector.test.process;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
+
+import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
 
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
@@ -12,28 +13,19 @@ import ch.ivyteam.ivy.bpm.engine.client.History;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
-import ch.ivyteam.ivy.environment.AppFixture;
 import threema.connector.ReceiverData;
-import threema.connector.test.constants.ThreemaTestConstants;
-import threema.connector.test.context.MultiEnvironmentContextProvider;
-import threema.connector.test.utils.ThreemaTestUtils;
+import threema.connector.test.BaseSetup;
 import util.LookupType;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
-public class GetReceiverInfoTest {
+public class GetReceiverInfoTest extends BaseSetup {
 
   private static final BpmProcess RECEIVER_INFO_PROCESS = BpmProcess.name("getReceiverInfo");
   private static final String VALID_ID = "validId";
 
-  @BeforeEach
-  void setup(ExtensionContext context, AppFixture fixture) {
-    ThreemaTestUtils.setUpConfigForContext(context.getDisplayName(), fixture);
-  }
-
   @TestTemplate
   void getIDByValidEmail(ExtensionContext context, BpmClient bpmClient) {
-    boolean isRealcase = context.getDisplayName().equals(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
     BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
     String email = VALID_ID;
     ReceiverData recDatMail = new ReceiverData();
@@ -42,7 +34,7 @@ public class GetReceiverInfoTest {
     ExecutionResult resultMail = bpmClient.start().subProcess(callable).execute(recDatMail);
     ReceiverData resultDataMail = resultMail.data().last();
     History historyMail = resultMail.history();
-    if (isRealcase) {
+    if (isRealTest) {
       assertThat(resultDataMail.getApiResponse()).isEqualTo("ID-Lookup: 404");
     } else {
       assertThat(resultDataMail.getApiResponse()).contains("200");
@@ -68,7 +60,6 @@ public class GetReceiverInfoTest {
 
   @TestTemplate
   void getIDByValidPhone(ExtensionContext context, BpmClient bpmClient) {
-    boolean isRealcase = context.getDisplayName().equals(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
     BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
     String phone = VALID_ID;
     ReceiverData recDatMail = new ReceiverData();
@@ -77,7 +68,7 @@ public class GetReceiverInfoTest {
     ExecutionResult resultMail = bpmClient.start().subProcess(callable).execute(recDatMail);
     ReceiverData resultDataMail = resultMail.data().last();
     History historyMail = resultMail.history();
-    if (isRealcase) {
+    if (isRealTest) {
       assertThat(resultDataMail.getApiResponse()).isEqualTo("ID-Lookup: 404");
     } else {
       assertThat(resultDataMail.getApiResponse()).contains("200");
@@ -88,16 +79,15 @@ public class GetReceiverInfoTest {
 
   @TestTemplate
   void getPublicKeyByID(ExtensionContext context, BpmClient bpmClient) {
-    boolean isRealcase = context.getDisplayName().equals(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
     BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
-    String threemaId = isRealcase ? "ECHOECHO" : "validId";
+    String threemaId = isRealTest ? "ECHOECHO" : "validId";
     ReceiverData recDatId = new ReceiverData();
     recDatId.setIdentifier(threemaId);
     recDatId.setType(LookupType.THREEMAID);
     ExecutionResult resultId = bpmClient.start().subProcess(callable).execute(recDatId);
     ReceiverData resultDataId = resultId.data().last();
     History historyId = resultId.history();
-    if (isRealcase) {
+    if (isRealTest) {
       assertThat(resultDataId.getApiResponse()).isEqualTo("PublicKey-Lookup: 200");
     } else {
       assertThat(resultDataId.getApiResponse()).contains("200");
@@ -115,16 +105,15 @@ public class GetReceiverInfoTest {
 
   @TestTemplate
   void getPublicKeyByInvalidID(ExtensionContext context, BpmClient bpmClient) {
-    boolean isRealcase = context.getDisplayName().equals(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
     BpmElement callable = RECEIVER_INFO_PROCESS.elementName("call(receiverData)");
-    String threemaId = isRealcase ? "ECHOECHO" : "invalidID";
+    String threemaId = isRealTest ? "ECHOECHO" : "invalidID";
     ReceiverData recDatId = new ReceiverData();
     recDatId.setIdentifier(threemaId);
     recDatId.setType(LookupType.THREEMAID);
     ExecutionResult resultId = bpmClient.start().subProcess(callable).execute(recDatId);
     ReceiverData resultDataId = resultId.data().last();
     History historyId = resultId.history();
-    if (isRealcase) {
+    if (isRealTest) {
       assertThat(resultDataId.getApiResponse()).isEqualTo("PublicKey-Lookup: 200");
     } else {
       assertThat(resultDataId.getApiResponse()).contains("404");

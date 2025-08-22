@@ -3,10 +3,11 @@ package threema.connector.test.process;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
+
+import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
@@ -19,23 +20,16 @@ import ch.ivyteam.ivy.rest.client.RestClients;
 import ch.ivyteam.ivy.scripting.objects.List;
 import threema.connector.ReceiverData;
 import threema.connector.SendThreemaMessageData;
-import threema.connector.test.constants.ThreemaTestConstants;
-import threema.connector.test.context.MultiEnvironmentContextProvider;
-import threema.connector.test.utils.ThreemaTestUtils;
+import threema.connector.test.BaseSetup;
 import util.LookupType;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
-public class MultipleRecipientsTest {
+public class MultipleRecipientsTest extends BaseSetup {
 
   private final static BpmProcess MULTIPLE_RECIPIENTS_PROCESS = BpmProcess.name("multipleRecipients");
   private final static BpmProcess SINGLE_RECIPIENT = BpmProcess.name("singleRecipient");
   private final static String MESSAGE = "Hello World";
-
-  @BeforeEach
-  void setup(ExtensionContext context, AppFixture fixture) {
-     ThreemaTestUtils.setUpConfigForContext(context.getDisplayName(), fixture);
-  }
 
   @AfterEach
   void afterEach(AppFixture fixture, IApplication app) {
@@ -63,8 +57,7 @@ public class MultipleRecipientsTest {
 
   @TestTemplate
   void prepareSingleRecipient(BpmClient bpmClient, ExtensionContext context) {
-    boolean isRealcase = context.getDisplayName().equals(ThreemaTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
-    String receiverId = isRealcase ? "ECHOECHO" : "validId";
+    String receiverId = isRealTest ? "ECHOECHO" : "validId";
     BpmElement callable = SINGLE_RECIPIENT.elementName("call(String,String,LookupType)");
     ExecutionResult result = bpmClient.start().subProcess(callable).execute(MESSAGE, receiverId, LookupType.THREEMAID);
     ReceiverData msgData = result.data().last();
